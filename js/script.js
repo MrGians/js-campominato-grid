@@ -45,6 +45,8 @@ for (let i = 1; i <= cellNumber; i++) {
   const cell = document.createElement("div");
   // Assegno la classe "cell"
   cell.classList.add("cell");
+  // Inserisco un numero ad ogni cella
+  cell.append(i);
   // Inserisco le celle nel DOM
   gridContainer.appendChild(cell);
 }
