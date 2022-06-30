@@ -2,7 +2,7 @@
 // L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 // Ogni cella ha un numero progressivo, da 1 a 100.
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
-// Al click sulla cella, essa si colora di azzurro e ne viene stampato in console il numero corrispondente.
+// Al click sulla cella, essa si colora di Rosso e ne viene stampato in console il numero corrispondente.
 
 // # MILESTONE 1
 // Prepariamo l'HTML ed il CSS per ottenere il risultato grafico che vediamo nell'immagine allegata.
@@ -15,7 +15,7 @@
 // In ogni cella, deve comparire il numero corrispondente, in ordine da 1 a 100;
 
 // # MILESTONE 4
-// Al click sulla cella, stampiamo il numero della cella cliccata in console, poi coloriamo la cella d'azzurro.
+// Al click sulla cella, stampiamo il numero della cella cliccata in console, poi coloriamo la cella di Rosso.
 
 // # BONUS
 // Aggiungere una select accanto al bottone "Play", che fornisca una scelta tra tre diversi livelli di difficoltà:
