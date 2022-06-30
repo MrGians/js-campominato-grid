@@ -25,3 +25,40 @@
 
 
 
+// Variabili Globali DOM
+const playBtn = document.getElementById("btn-play");
+const grid = document.getElementById("grid");
+
+
+// Variabili di appoggio Griglia
+const rows = 10;
+const cells = 10;
+const totalCells = rows * cells;
+
+
+// Creo una funzione che si occupi di generare le Celle
+const createCell = (cellNumber, gridContainer) => {
+
+// Genero le celle tramite un ciclo FOR
+for (let i = 1; i <= cellNumber; i++) {
+  // Creo l'elemento Cella
+  const cell = document.createElement("div");
+  // Assegno la classe "cell"
+  cell.classList.add("cell");
+  // Inserisco le celle nel DOM
+  gridContainer.appendChild(cell);
+}
+
+}
+
+
+// Creo le celle necessarie ed inserisco la destinazione tramite la Funzione "createCell"
+createCell(totalCells, grid);
+
+
+// Rendo visibile Griglia & Celle al click del bottone "Play"
+playBtn.addEventListener("click", () => {
+  // Rendo visibile la griglia
+  grid.classList.remove("d-none");
+});
+
