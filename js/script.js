@@ -37,30 +37,35 @@ const totalCells = rows * cells;
 
 
 // Creo una funzione che si occupi di generare le Celle
-const createCell = (cellNumber, gridContainer) => {
+const createCell = (cellNumber, gridContainer, hasNumberIn = false, isClickable = false, hasBGColorOnClick = false) => {
 
-// Genero le celle tramite un ciclo FOR
-for (let i = 1; i <= cellNumber; i++) {
-  // Creo l'elemento Cella
-  const cell = document.createElement("div");
-  // Assegno la classe "cell"
-  cell.classList.add("cell");
-  // Inserisco un numero ad ogni cella
-  cell.append(i);
-  // Inserisco le celle nel DOM
-  gridContainer.appendChild(cell);
-}
+  // Genero le celle tramite un ciclo FOR
+  for (let i = 1; i <= cellNumber; i++) {
+    // Creo l'elemento Cella
+    const cell = document.createElement("div");
+    // Assegno la classe "cell"
+    cell.classList.add("cell");
+    // Inserisco un numero ad ogni cella
+    if (hasNumberIn) cell.append(i);
 
+    // Aggiungo evento: al click della Cella stampa il numero cella in console
+    if (isClickable) cell.addEventListener("click", (event) => console.log("Cell: " + event.target.innerText));
+    // Aggiungo evento: al click della Cella le cambia il colore di sfondo
+    if (hasBGColorOnClick) cell.addEventListener("click", (event) => cell.classList.toggle("clicked"));
+    // Inserisco le celle nel DOM
+    gridContainer.appendChild(cell);
+  }
 }
 
 
 // Creo le celle necessarie ed inserisco la destinazione tramite la Funzione "createCell"
-createCell(totalCells, grid);
+createCell(totalCells, grid, true, true, true);
 
 
 // Rendo visibile Griglia & Celle al click del bottone "Play"
-playBtn.addEventListener("click", () => {
-  // Rendo visibile la griglia
-  grid.classList.remove("d-none");
-});
+playBtn.addEventListener("click", () => grid.classList.remove("d-none"));
 
+// Al click della cella essa si colora di Rosso
+const cell = document.querySelectorAll("div.cell");
+console.log(cell)
+cell.addEventListener("click", (event) => console.log(event.target));
