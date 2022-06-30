@@ -1,6 +1,3 @@
-/*********** Generics ***********/
-
-
 /*********** Header ***********/
 header {background-color: #992017;}
 
@@ -26,9 +23,7 @@ body {background-color: #bda162;}
     flex-wrap: wrap;
 }
 
-#grid .cell {
-    height: calc(100% / 10);
-    width: calc(100% / 10);
+#grid [class^="cell-"] {
     color: white;
     border: 1px dashed white;
     display: flex;
@@ -36,4 +31,20 @@ body {background-color: #bda162;}
     align-items: center;
 }
 
-#grid .cell.clicked {background-color: #992017;}
+#grid [class^="cell-"].clicked {background-color: #992017;}
+
+/* Se viene selezionata l'opzione "Easy" */
+#grid .cell-easy {
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+/* Se viene selezionata l'opzione "Classic" */
+#grid .cell-classic {
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+/* Se viene selezionata l'opzione "Hardcore" */
+#grid .cell-hard {
+    height: calc(100% / 7);
+    width: calc(100% / 7);
+}

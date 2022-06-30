@@ -28,12 +28,7 @@
 // Variabili Globali DOM
 const playBtn = document.getElementById("btn-play");
 const grid = document.getElementById("grid");
-
-
-// Variabili di appoggio Griglia
-const rows = 10;
-const cells = 10;
-const totalCells = rows * cells;
+const gridChoice = document.getElementById("grid-choice");
 
 
 // Creo una funzione che si occupi di generare le Celle
@@ -43,11 +38,14 @@ const createCell = (cellNumber, gridContainer, hasNumberIn = false, isClickable 
   for (let i = 1; i <= cellNumber; i++) {
     // Creo l'elemento Cella
     const cell = document.createElement("div");
-    // Assegno la classe "cell"
-    cell.classList.add("cell");
+
+    // Assegno la classe "cell-[option-value]" in base al numero di Rows * Cells
+    if (cellNumber === 100) cell.classList.add("cell-easy");
+    else if (cellNumber === 81) cell.classList.add("cell-classic");
+    else if (cellNumber === 49) cell.classList.add("cell-hard");
+
     // Inserisco un numero ad ogni cella
     if (hasNumberIn) cell.append(i);
-
     // Aggiungo evento: al click della Cella stampa il numero cella in console
     if (isClickable) cell.addEventListener("click", (event) => console.log("Cell: " + event.target.innerText));
     // Aggiungo evento: al click della Cella le cambia il colore di sfondo
@@ -58,14 +56,50 @@ const createCell = (cellNumber, gridContainer, hasNumberIn = false, isClickable 
 }
 
 
-// Creo le celle necessarie ed inserisco la destinazione tramite la Funzione "createCell"
-createCell(totalCells, grid, true, true, true);
+
+// Variabili di appoggio per la griglia (Globali)
+let rows = 10;
+let cells = 10;
+let totalCells = rows * cells; // Default: Easy
 
 
-// Rendo visibile Griglia & Celle al click del bottone "Play"
-playBtn.addEventListener("click", () => grid.classList.remove("d-none"));
+// Creo evento sulla <select> per cambiare dinamicamente il numero di celle interne alla griglia
+ gridChoice.addEventListener("change", (event) => {
 
-// Al click della cella essa si colora di Rosso
-const cell = document.querySelectorAll("div.cell");
-console.log(cell)
-cell.addEventListener("click", (event) => console.log(event.target));
+    switch (event.target.value) {
+      // Se viene selezionata l'opzione "Hardcore"
+      case "hard":
+        rows = 7;
+        cells = 7;
+        break;
+
+      // Se viene selezionata l'opzione "Classic"
+      case "classic":
+        rows = 9;
+        cells = 9;
+        break;
+
+      // Se viene selezionata l'opzione "Easy" (Default)
+      case "easy":
+        rows = 10;
+        cells = 10;
+        break;
+    }
+
+  // Determino il numero totale finale di Celle
+  totalCells = rows * cells;
+ })
+
+
+
+// Renderizzo la griglia e creo elementi Cella al click del bottone "Play"
+playBtn.addEventListener("click", () => {
+  // Rendo visibile la griglia
+  grid.classList.remove("d-none");
+
+  // Resetto gli elementi <div> dentro alla griglia (Utilità dal secondo click di "play" in poi)
+  grid.innerHTML = "";
+
+  // Creo le celle necessarie tramite la Funzione "createCell" ed i relativi parametri
+  createCell(totalCells, grid, true, true, true);
+});
